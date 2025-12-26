@@ -1,20 +1,36 @@
 import time
-from typing import Dict, Any
+from typing import Dict, Any, Iterable
 from .model import Variable, Constraint, Invariant, FailureMode, DecisionModel
+
+def _extract_keys(obj: Any) -> Iterable[str]:
+    if isinstance(obj, dict):
+        return obj.keys()
+    if isinstance(obj, list):
+        keys = []
+        for item in obj:
+            if isinstance(item, dict):
+                keys.extend(item.keys())
+        return keys
+    return []
 
 def decompose(problem: Dict[str, Any]) -> Dict[str, Any]:
     start = time.time()
 
     variables = []
-    for k in problem.get("knowns", {}).keys():
+
+    for k in _extract_keys(problem.get("knowns", {})):
         variables.append(Variable(name=k, kind="observed"))
+
     for k in problem.get("unknowns", []):
         variables.append(Variable(name=k, kind="observed"))
 
     for k in ["crew_allocation", "load_shedding_policy"]:
         variables.append(Variable(name=k, kind="controllable"))
 
-    constraints = [Constraint(expression=c) for c in problem.get("constraints", [])]
+    constraints = [
+        Constraint(expression=c)
+        for c in problem.get("constraints", [])
+    ]
 
     invariants = [
         Invariant(expression="critical_services_priority > general_distribution"),
@@ -39,7 +55,7 @@ def decompose(problem: Dict[str, Any]) -> Dict[str, Any]:
         failure_modes=failure_modes,
     )
 
-    elapsed = round(time.time() - start, 3)
+    elapsed = round(time.time() - start, 6)
 
     return {
         "model": model,
