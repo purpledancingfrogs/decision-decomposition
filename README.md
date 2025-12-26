@@ -45,6 +45,8 @@ It demonstrates method and structure, not domain-specific conclusions.
 - Auditability over persuasion
 
 ## Evaluation
+Baseline comparisons are included to show decision degradation when explicit structure is absent.
+
 The primary evaluation question is simple:
 
 What becomes clearer, faster, or more stable once the structure exists?
