@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # decision-decomposition
 
 Decision structuring tools for high-uncertainty environments.
@@ -110,4 +109,5 @@ What becomes clearer, faster, or more stable once the structure exists?
 
 ## License
 MIT
+
 >>>>>>> 2c67804150c3f7c75e719d35a22d8006c978a6a2
