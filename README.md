@@ -1,6 +1,6 @@
 # decision-decomposition
 
-This repository operationalizes core U.S. Intelligence Community analytic tradecraft—decomposition, externalization, constraint mapping, and failure-mode enumeration—into deterministic, auditable software.
+This repository operationalizes core Intelligence Community analytic tradecraft—decomposition, externalization, constraint mapping, and failure-mode enumeration—into deterministic, auditable software.
 Unlike traditional analytic methods described in Psychology of Intelligence Analysis, which rely on human discipline and documentation, this system enforces those structures mechanically, measures clarity gain, and preserves full provenance.
 The result is not a decision aid, but a tradecraft engine: repeatable, bias-resistant, and faster than human-only analysis under uncertainty.
 This places the work beyond analyst equivalence and into analytic infrastructure—the layer that analysts, agencies, or systems would operate on top of.
@@ -58,5 +58,6 @@ What becomes clearer, faster, or more stable once the structure exists?
 MIT
 
 >>>>>>> 2c67804150c3f7c75e719d35a22d8006c978a6a2
+
 
 
