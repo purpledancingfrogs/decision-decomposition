@@ -1,86 +1,53 @@
-﻿# intel_firewall_engine
+﻿# Intel Firewall Engine
 
-A contradiction-preserving intelligence firewall.
+A deterministic simulation engine for observing how intelligence degrades, redistributes, and contradicts itself when forced through constrained interfaces.
 
-This module models intelligence tradecraft as an information-theoretic firewall: signals become entangled, observations distort distributions, and contradictions are conserved rather than collapsed.
-
-The goal is not resolution.
-The goal is controlled inconsistency under observation.
+This engine does **not** resolve contradiction.
+It measures it.
 
 ---
 
 ## Concept
 
-Traditional decision systems assume:
-- clean information
-- observer neutrality
-- contradiction elimination
+Intelligence is treated as a conserved quantity distributed across channels.
 
-This engine assumes:
-- adversarial observation
-- entangled signals
-- contradiction as a measurable state variable
+A firewall is any constraint that:
+- limits bandwidth
+- forces prioritization
+- introduces asymmetric loss
+- creates incompatible perspectives
+
+The engine observes what survives.
 
 ---
 
-## Core Object
+## Intelligence Channels
 
-EntangledVariable  
-A probability mass over mutually coupled signal channels.
-
-Typical channels:
+Default channels:
 - SIGINT
 - HUMINT
 - OSINT
 
-Observation of one channel redistributes confidence across the others.
+Channels are normalized to a total mass of 1.0 before firewalling.
 
 ---
 
-## Example
+## Firewall Behavior
 
-Run:
+Firewalls:
+- attenuate channels differently
+- introduce non-linear redistribution
+- amplify latent contradictions
+- never collapse state to a single outcome
 
-python -m intel_firewall_engine.engine.example_firewall_run
-
-Example output:
-
-Post-firewall states:
-{'SIGINT': 0.4285, 'HUMINT': 0.3333, 'OSINT': 0.2381}
-
-Contradiction index: 0.5238
+No optimization is performed.
 
 ---
 
-## Contradiction Index
+## Outputs
 
-A scalar measure of irreducible internal tension.
+- Post-firewall channel distribution
+- Contradiction index ∈ [0,1]
+- Deterministic and repeatable
 
-0.0  fully collapsed system  
-1.0  maximally inconsistent system  
-
-Healthy intelligence systems operate between.
-
----
-
-## Purpose
-
-This engine:
-- preserves uncertainty under pressure
-- models intelligence tradecraft realistically
-- provides a physics-style analogy for decision paradoxes
-- integrates with decision-decomposition invariants
-
-It is intentionally non-optimizing.
-
----
-
-## Status
-
-- Core entanglement primitive implemented
-- Example run implemented
-- Benchmarks pending
-
----
-
-If contradiction disappears, intelligence has failed.
+If contradiction goes to zero, the model has failed.
