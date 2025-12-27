@@ -1,63 +1,32 @@
-# decision-decomposition
+# Decision Structure Invariants
 
-This repository operationalizes core Intelligence Community analytic tradecraft—decomposition, externalization, constraint mapping, and failure-mode enumeration—into deterministic, auditable software.
-Unlike traditional analytic methods described in Psychology of Intelligence Analysis, which rely on human discipline and documentation, this system enforces those structures mechanically, measures clarity gain, and preserves full provenance.
-The result is not a decision aid, but a tradecraft engine: repeatable, bias-resistant, and faster than human-only analysis under uncertainty.
-This places the work beyond analyst equivalence and into analytic infrastructure—the layer that analysts, agencies, or systems would operate on top of.
+This module identifies decision-structure invariants that persist across domains, scales, and contexts.
 
-## Purpose
-Ambiguous situations stall decisions when variables, constraints, and failure modes remain implicit.  
-This repository provides methods to convert unclear problem statements into explicit, auditable decision structures.
+An invariant is a structural property of a decision that remains true regardless of:
+- domain (security, infrastructure, governance, AI, medicine)
+- actor intent
+- data completeness
+- time pressure
+- narrative framing
 
-## Method
-Input situations are decomposed into:
-- Variables (controllable and observed)
-- Constraints
-- Invariants
-- Failure modes
+This repository extends `decision-decomposition` by moving from **components** to **laws**.
 
-The result is a structured representation suitable for analysis, comparison, and downstream decision processes.
+The goal is not optimization.
+The goal is **predictive stability under uncertainty**.
 
-## Inputs
-- Short text descriptions
-- YAML or JSON problem statements
-- Non-sensitive, open-domain scenarios only
+## Contents
 
-## Outputs
-- Structured decision models
-- Constraint and dependency graphs
-- Enumerated invariants and failure modes
-- Logged metrics
+- `invariants.md` — formally stated decision invariants
+- `mapping.md` — mapping invariants to real-world cases
+- `cases/` — raw case descriptions
+- `outputs/` — invariant extraction results
 
-## Metrics
-- Time-to-clarity (from input to stable structure)
-- Variable completeness
-- Constraint density
-- Failure-mode coverage
+## Method Constraints
 
-Metrics are recorded for reproducibility and comparison.
+- No persuasion
+- No moral framing
+- No policy advocacy
+- No outcome optimization
+- Structural analysis only
 
-## Scope
-This repository is intentionally limited to neutral and public examples.  
-It demonstrates method and structure, not domain-specific conclusions.
-
-## Design principles
-- Explicit structure over narrative
-- Logs over prose
-- Reproducibility over explanation
-- Auditability over persuasion
-
-## Evaluation
-Baseline comparisons are included to show decision degradation when explicit structure is absent.
-
-The primary evaluation question is simple:
-
-What becomes clearer, faster, or more stable once the structure exists?
-
-## License
-MIT
-
->>>>>>> 2c67804150c3f7c75e719d35a22d8006c978a6a2
-
-
-
+If a decision violates an invariant, failure modes are guaranteed, not probabilistic.
