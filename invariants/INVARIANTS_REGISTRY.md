@@ -14,3 +14,8 @@ Domain: Operations
 Name: Information Integrity  
 Description: Decision quality degrades with communication loss  
 Domain: Coordination
+
+## INV-004
+Name: Priority Preservation
+Description: Life-critical objectives dominate all optimization layers
+Domain: Cross-domain
