@@ -1,34 +1,5 @@
-# Cross-Model Convergence Benchmark — Raw Results
-
-## Notes
-- No post-processing
-- No interpretation
-- Raw output only
-- Verbatim model responses
-- Time-stamped at capture
-
----
-
-## Experiment Metadata
-- **Experiment ID:** CMCB-001
-- **Date (UTC):** 2025-12-26
-- **Operator:** Nadine
-- **Objective:** Measure spontaneous semantic convergence across independent LLMs under identical prompts, without alignment, filtering, or aggregation.
-
----
-
-## Prompt (Verbatim)
-
----
-
-## Models Tested
-- ChatGPT 5.2 Instant
-- Grok-4
-- Claude (specify version)
-- (Optional) Additional model(s)
-
----
-
-## Raw Outputs
-
-### ChatGPT 5.2 Instant
+{
+  "pairs": 3,
+  "jaccard_mean": 0.0,
+  "cosine_mean": 0.0
+}

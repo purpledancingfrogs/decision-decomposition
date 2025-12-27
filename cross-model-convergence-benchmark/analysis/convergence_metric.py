@@ -1,57 +1,54 @@
-import glob
 import json
+import argparse
 from pathlib import Path
+from collections import Counter
 
-def load_runs(pattern):
-    runs = {}
-    for p in glob.glob(pattern, recursive=True):
-        model = Path(p).parts[-2]
-        with open(p, "r", encoding="utf-8") as f:
-            runs.setdefault(model, []).append(f.read())
-    return runs
+def tokenize(text):
+    return [t for t in text.lower().split() if t.isalnum() or t.isalpha()]
 
-def normalize_lines(text):
+def jaccard(a, b):
+    A, B = set(a), set(b)
+    return len(A & B) / max(1, len(A | B))
+
+def cosine_counts(a, b):
+    ca, cb = Counter(a), Counter(b)
+    keys = set(ca) | set(cb)
+    dot = sum(ca[k] * cb[k] for k in keys)
+    na = sum(v*v for v in ca.values()) ** 0.5
+    nb = sum(v*v for v in cb.values()) ** 0.5
+    return 0.0 if na == 0 or nb == 0 else dot / (na * nb)
+
+def score(texts):
+    toks = [tokenize(t) for t in texts]
+    pairwise = []
+    for i in range(len(toks)):
+        for j in range(i+1, len(toks)):
+            pairwise.append({
+                "jaccard": jaccard(toks[i], toks[j]),
+                "cosine": cosine_counts(toks[i], toks[j])
+            })
+    if not pairwise:
+        return {"pairs": 0, "jaccard_mean": 0.0, "cosine_mean": 0.0}
     return {
-        line.strip().lower()
-        for line in text.splitlines()
-        if line.strip() and not line.strip().startswith("#")
+        "pairs": len(pairwise),
+        "jaccard_mean": sum(p["jaccard"] for p in pairwise) / len(pairwise),
+        "cosine_mean": sum(p["cosine"] for p in pairwise) / len(pairwise)
     }
 
-def extract_invariants(text):
-    lines = normalize_lines(text)
-    return {
-        l for l in lines
-        if any(k in l for k in ["must", "cannot", "always", "requires", "fails if"])
-    }
+def load_texts(root):
+    return [p.read_text(encoding="utf-8") for p in Path(root).rglob("*.txt")]
 
-def structural_overlap(a, b):
-    if not a and not b:
-        return 1.0
-    return len(a & b) / max(len(a | b), 1)
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--inputs", required=True)
+    ap.add_argument("--out", required=True)
+    args = ap.parse_args()
 
-def analyze(run_a, run_b):
-    inv_a = extract_invariants(run_a)
-    inv_b = extract_invariants(run_b)
-    return {
-        "overlap": structural_overlap(inv_a, inv_b),
-        "count_a": len(inv_a),
-        "count_b": len(inv_b),
-        "intersection": sorted(inv_a & inv_b),
-    }
+    texts = load_texts(args.inputs)
+    result = score(texts)
 
-def compare_models(runs):
-    results = {}
-    models = list(runs.keys())
-    for i in range(len(models)):
-        for j in range(i + 1, len(models)):
-            a, b = models[i], models[j]
-            results[f"{a} vs {b}"] = analyze(
-                "\n".join(runs[a]),
-                "\n".join(runs[b])
-            )
-    return results
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.out).write_text(json.dumps(result, indent=2), encoding="utf-8")
 
 if __name__ == "__main__":
-    runs = load_runs("raw_outputs/**/run*.txt")
-    results = compare_models(runs)
-    print(json.dumps(results, indent=2))
+    main()
