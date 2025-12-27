@@ -1,57 +1,86 @@
-# Intel Firewall Engine
+﻿# intel_firewall_engine
 
-A contradiction-preserving intelligence engine.
+A contradiction-preserving intelligence firewall.
 
-This module models intelligence analysis as the movement of information across **firewalls**—boundaries where observation, secrecy, deception, or uncertainty reshape signals without forcing premature resolution.
+This module models intelligence tradecraft as an information-theoretic firewall: signals become entangled, observations distort distributions, and contradictions are conserved rather than collapsed.
 
-Unlike traditional analytic systems that optimize toward consensus or collapse ambiguity, the Intel Firewall Engine **preserves paradox by design**.
+The goal is not resolution.
+The goal is controlled inconsistency under observation.
 
-## Core Idea
+---
 
-In real intelligence environments, information is often:
-- entangled across sources,
-- altered by observation,
-- degraded by time,
-- distorted by adversarial pressure.
+## Concept
 
-Treating these effects as bugs produces false certainty.  
-Treating them as **structural dynamics** produces stability.
+Traditional decision systems assume:
+- clean information
+- observer neutrality
+- contradiction elimination
 
-This engine formalizes that distinction.
+This engine assumes:
+- adversarial observation
+- entangled signals
+- contradiction as a measurable state variable
 
-## What This Engine Does
+---
 
-- Represents signals as structured probability distributions
-- Applies observation boundaries (“firewalls”) that reshape signals without resolving contradictions
-- Quantifies information loss, suppression, and persistence
-- Maintains audit trails across observation events
+## Core Object
 
-## Design Principles
+EntangledVariable  
+A probability mass over mutually coupled signal channels.
 
-- **No forced resolution** — contradictions are retained, not eliminated
-- **Deterministic structure** — every transformation is explicit and reproducible
-- **Invariant-aware** — integrates with decision-decomposition invariants
-- **Operational** — runnable, inspectable, benchmarkable
+Typical channels:
+- SIGINT
+- HUMINT
+- OSINT
 
-## Relationship to the Repository
+Observation of one channel redistributes confidence across the others.
 
-This engine complements:
-- `decision-decomposition/` — structural clarity and variable geometry
-- `decision-structure-invariants/` — consistency constraints under uncertainty
-- `cross-model-convergence-benchmark/` — model agreement without truth collapse
+---
 
-The firewall engine models **what happens when clarity is not possible**.
+## Example
+
+Run:
+
+python -m intel_firewall_engine.engine.example_firewall_run
+
+Example output:
+
+Post-firewall states:
+{'SIGINT': 0.4285, 'HUMINT': 0.3333, 'OSINT': 0.2381}
+
+Contradiction index: 0.5238
+
+---
+
+## Contradiction Index
+
+A scalar measure of irreducible internal tension.
+
+0.0  fully collapsed system  
+1.0  maximally inconsistent system  
+
+Healthy intelligence systems operate between.
+
+---
+
+## Purpose
+
+This engine:
+- preserves uncertainty under pressure
+- models intelligence tradecraft realistically
+- provides a physics-style analogy for decision paradoxes
+- integrates with decision-decomposition invariants
+
+It is intentionally non-optimizing.
+
+---
 
 ## Status
 
-Minimal operational kernel.
-Executable.
-Extensible.
+- Core entanglement primitive implemented
+- Example run implemented
+- Benchmarks pending
 
-Future modules will add:
-- multi-firewall chains
-- evaporation dynamics
-- contradiction persistence metrics
-- invariant-linked simulations
+---
 
-This is infrastructure, not narrative.
+If contradiction disappears, intelligence has failed.
